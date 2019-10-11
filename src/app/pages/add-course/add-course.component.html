@@ -1,0 +1,92 @@
+<div class="centered-content">
+    <div class="modal-box">
+        <h1 class="title">Add a New Course </h1>
+        <form #newcourse="ngForm" (ngSubmit)="onClickSubmit(newcourse.value)">
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <app-search [courseName]="courseName" (newName)="onChangeName($event)" ></app-search>
+                    </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Course Code</label>
+                        <div class="control">
+                            <input type="text" name="courseCode" id="courseCode" disabled class="input has-background-light is-medium"
+                            autofocus/>
+                        </div>
+                        </div>
+
+            <div class="field">
+                <label class="label">Year</label>
+
+                <div class="control">
+                    <label class="radio" checked>
+                        <input type="radio" value=1 name="year" ngModel>
+                        Freshmen
+                    </label>
+                    <label class="radio">
+                        <input type="radio" value=2 name="year" ngModel>
+                        Sophomore
+                    </label>
+                    <label class="radio">
+                        <input type="radio" value=3 name="year" ngModel>
+                        Junior
+                    </label>
+                    <label class="radio">
+                        <input type="radio" value=4 name="year" ngModel>
+                        Senior
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Tags</label>
+                <div class="control">
+                        <label class="radio" checked>
+                                <input type="radio" value="Bio" name="requirements" ngModel>
+                                Biologyd Foundation
+                            </label>
+                            <label class="radio">
+                                <input type="radio" value="Chem" name="requirements" ngModel>
+                                Chemis try Foundation
+                            </label>
+                            <label class="radio">
+                                <input type="radio" value="Prob/Stat" name="requirements" ngModel>
+                                Probability and Statistics
+                            </label>
+                            <label class="radio">
+                                <input type="radio" value="Design Depth" name="requirements" ngModel>
+                                Design Depth
+                            </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Credit Coloring</label>
+                <div class="control">
+                    <div class="select">
+                        <select class="input has-background-light" name="credit" ngModel>
+                            <option>ENGR</option>
+                            <option>MTH</option>
+                            <option>SCI</option>
+                            <option>AHSE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons is-right">
+                <button class="button is-medium" routerLink="/main-view">Cancel</button>
+
+                <button class="button is-primary has-text-white is-medium" type="submit">Create</button>
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+
+
+</div>

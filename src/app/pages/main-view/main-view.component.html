@@ -1,0 +1,59 @@
+<div class="root">
+    <div class="navbar has-background-dark">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <h1 class="app-name">Scheduler! :) </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="board">
+        <div class="board-bar">
+            <p class="board-name">{{ board.name }} </p>
+        </div>
+
+        <div class="board-wrapper">
+            <div class="board-columns" cdkDropListGroup>
+                <div class="board-column" *ngFor="let column of board.columns; let i=index">
+                    <div class="column-title">
+                        {{ column.name }}
+                    </div>
+                    <app-column-view [year]="i+1"></app-column-view>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="containerrr">
+        <button class="button is-primary has-text-white" routerLink="/add-course">+ add course</button>
+        <button class="button is-primary has-text-white" routerLink="/add-course-listing">+ add course listing</button>
+    </div>
+    <!-- <div class="board">
+    <div class="board-wrapper">
+        <div class="board-columns">
+            <div class="board-column">
+                    <div class="listing" *ngFor="let l of listings">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <span class="course-name">{{ l.name }}  </span>
+                                        <span class="course-code">| {{ l.courseCode}}</span>
+                                    </div>
+                                </div>
+                                <footer class="card-footer">
+                                        <a (click)="onDeleteCourseListingClick(l._id)" class="card-footer-item">Delete</a>
+                                      </footer>
+                            </div>
+                            
+                        </div>
+            </div>
+        </div>
+       
+    </div>
+    </div> -->
+</div>

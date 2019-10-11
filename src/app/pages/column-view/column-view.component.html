@@ -1,0 +1,27 @@
+
+
+<div class="tasks-container"
+cdkDropList
+[cdkDropListData]="first"
+(cdkDropListDropped)="drop($event)">
+
+  <div class="card" *ngFor="let each of first" cdkDrag [cdkDragData]="each">
+    <div class="card-content">
+      <div class="content">
+        <div class="course-header">
+        <span class="course-name">{{ each.name }}  </span>
+        <span class="course-code">| {{ each.courseCode}}</span>
+      </div>
+     
+        <div class="tags">
+          <span class="tag" *ngFor="let tag of each.tags">{{ tag }} </span>
+        </div>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item">Edit</a>
+      <a (click)="onDeleteCourseClick(each._id)" class="card-footer-item">Delete</a>
+    </footer>
+
+  </div>
+  </div>
