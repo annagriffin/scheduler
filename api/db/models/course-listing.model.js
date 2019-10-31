@@ -6,12 +6,6 @@ const CourseListingSchema = new mongoose.Schema({
         required: true,
         minlength: 1,
         trim: true
-    },
-    courseCode: {
-        type: String,
-        required: true,
-        minlength: 1,
-        trim: true
     }
 
 })
