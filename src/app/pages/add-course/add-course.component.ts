@@ -28,16 +28,16 @@ export class AddCourseComponent implements OnInit {
   onClickSubmit(data: any) {
     console.log(data);
 
-    let newCourse: Course = {
-      name: data.name,
-      courseCode: data.courseCode, 
-      tags: [data.credit, data.requirements], 
-      year: data.year
-    };
+    // let newCourse: Course = {
+    //   name: data.name,
+    //   tag: data.requirement,
+    //   credits: data.credits, 
+    //   year: data.year
+    // };
 
-    this.courseService.addCourse(newCourse).subscribe(() => {
-      this.router.navigate(['/main-view']);
-    });
+    // this.courseService.addCourse(newCourse).subscribe(() => {
+    //   this.router.navigate(['/main-view']);
+    // });
   }
 
 }

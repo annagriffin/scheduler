@@ -8,8 +8,12 @@ const CourseSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     },
-    tags: {
-        type: [String],
+    tag: {
+        type: String,
+        required: false
+    },
+    credits: {
+        type: Number,
         required: true
     },
     year: {

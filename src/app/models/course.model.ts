@@ -1,5 +1,5 @@
 export class Course {
-    constructor(public name: string, public courseCode: string, public tags: string[], public year: number) {
+    constructor(public name: string, public tag: string, public credits: string, public year: number) {
 
     }
 }

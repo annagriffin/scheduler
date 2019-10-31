@@ -2,14 +2,14 @@
     <div class="modal-box">
         <h1 class="title">Add a New Course </h1>
         <form #newcourse="ngForm" (ngSubmit)="onClickSubmit(newcourse.value)">
-                <div class="field">
-                    <label class="label">Name</label>
-                    <div class="control">
-                        <app-search [courseName]="courseName" (newName)="onChangeName($event)" ></app-search>
-                    </div>
-                    </div>
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <app-search [courseName]="courseName" (newName)="onChangeName($event)"></app-search>
+                </div>
+            </div>
 
-                    <!-- <div class="field">
+            <!-- <div class="field">
                         <label class="label">Course Code</label>
                         <div class="control">
                             <input type="text" name="courseCode" id="courseCode" disabled class="input has-background-light is-medium"
@@ -59,6 +59,117 @@
                     </div>
                 </div>
             </div>
+
+            <div class="field">
+                <label class="label">Credits</label>
+                <div class="control credit-wrapper has-addons">
+                    <div class="credit-group">
+                        <div class="credit-category">
+                                ENGR
+                            </div>
+                    <div class="input-button-group-container">
+                        <div class="input-button-group">
+                            <input name="credit0-engr" type="radio" value=0 ngModel>
+                            <label class="button left">
+                                0
+                            </label>
+                        </div>
+                        <div class="input-button-group">
+                            <input name="credit-engr" type="radio" value=2 ngModel>
+                            <label class="button middle">
+                                2
+                            </label>
+                        </div>
+                        <div class="input-button-group">
+                            <input name="credit-engr" type="radio" value=4 ngModel>
+                            <label class="button right">
+                                4
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="credit-group">
+                    <div class="credit-category">
+                            MTH
+                        </div>
+                    <div class="input-button-group-container">
+                            <div class="input-button-group">
+                                <input name="credit-mth" type="radio" value=0 ngModel>
+                                <label class="button left">
+                                    0
+                                </label>
+                            </div>
+                            <div class="input-button-group">
+                                <input name="credit-mth" type="radio" value=2 ngModel>
+                                <label class="button middle">
+                                    2
+                                </label>
+                            </div>
+                            <div class="input-button-group">
+                                <input name="credit-mth" type="radio" value=4 ngModel>
+                                <label class="button right">
+                                    4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="credit-group">
+                        <div class="credit-category">
+                                SCI
+                            </div>
+                        <div class="input-button-group-container">
+                                <div class="input-button-group">
+                                    <input name="credit-sci" type="radio" value=0 ngModel>
+                                    <label class="button left">
+                                        0
+                                    </label>
+                                </div>
+                                <div class="input-button-group">
+                                    <input name="credit-sci" type="radio" value=2 ngModel>
+                                    <label class="button middle">
+                                        2
+                                    </label>
+                                </div>
+                                <div class="input-button-group">
+                                    <input name="credit-sci" type="radio" value=4 ngModel>
+                                    <label class="button right">
+                                        4
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="credit-group">
+                            <div class="credit-category">
+                                AHS
+                            </div>
+                            <div class="input-button-group-container">
+                                    <div class="input-button-group">
+                                        <input name="credit-ahs" type="radio" value=0 ngModel>
+                                        <label class="button left">
+                                            0
+                                        </label>
+                                    </div>
+                                    <div class="input-button-group">
+                                        <input name="credit-ash" type="radio" value=2 ngModel>
+                                        <label class="button middle">
+                                            2
+                                        </label>
+                                    </div>
+                                    <div class="input-button-group">
+                                        <input name="credit-ahs" type="radio" value=4 ngModel>
+                                        <label class="button right">
+                                            4
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+
+
+
+
+
             <div class="buttons is-right">
                 <button class="button is-medium" routerLink="/main-view">Cancel</button>
 
