@@ -7,20 +7,21 @@ cdkDropList
 
   <div class="card" *ngFor="let each of first" cdkDrag [cdkDragData]="each">
     <div class="card-content">
+        <a (click)="onDeleteCourseClick(each._id)" class="delete"></a>
       <div class="content">
         <div class="course-header">
-        <span class="course-name">{{ each.name }}  </span>
+        <div class="course-name">{{ each.name }}  </div>
+        <div *ngIf="each.tag" class="corse-tag is-size-7"> {{ each.tag }} </div>
       </div>
      
         <div class="tags">
-          <span class="tag" *ngFor="let tag of each.tags">{{ tag }} </span>
+          <span *ngIf="each.credits[0]" class="tag engr">{{ each.credits[0] }}ENGR </span>
+          <span *ngIf="each.credits[1]" class="tag mth">{{ each.credits[1] }}MTH </span>
+          <span *ngIf="each.credits[2]" class="tag sci">{{ each.credits[2] }}SCI </span>
+          <span *ngIf="each.credits[3]" class="tag ahs">{{ each.credits[3] }}AHS </span>
         </div>
       </div>
     </div>
-    <footer class="card-footer">
-      <a href="#" class="card-footer-item">Edit</a>
-      <a (click)="onDeleteCourseClick(each._id)" class="card-footer-item">Delete</a>
-    </footer>
 
   </div>
   </div>
