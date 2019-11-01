@@ -15,6 +15,8 @@ import { AddCourseComponent } from './pages/add-course/add-course.component';
 import { AddCourseListingComponent } from './pages/add-course-listing/add-course-listing.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchService } from './search.service';
+import { RequirementsViewComponent } from './pages/requirements-view/requirements-view.component';
+import { CourseListingViewComponent } from './pages/course-listing-view/course-listing-view.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { SearchService } from './search.service';
     AddCourseComponent,
     AddCourseListingComponent,
     SearchComponent,
+    RequirementsViewComponent,
+    CourseListingViewComponent
   ],
   imports: [
     BrowserModule,
