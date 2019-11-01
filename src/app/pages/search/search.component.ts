@@ -42,7 +42,6 @@ export class SearchComponent implements OnInit {
 
     (document.getElementById('courseName') as HTMLInputElement).value = item.name;
     this.newName.emit(item.name);
-    (document.getElementById('courseCode')as HTMLInputElement).value = item.courseCode;
     document.getElementById('content').style.display = "none";
     return true
 

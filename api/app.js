@@ -128,13 +128,13 @@ app.get('/course-listings/search/:query', (req, res) => {
 app.post('/courses', (req, res) => {
     // create new list and return list back to user
     let name = req.body.name;
-    let courseCode = req.body.courseCode;
-    let tags = req.body.tags;
+    let tag = req.body.tag;
     let year = req.body.year;
+    let credits = req.body.credits;
     let newCourse = new Course({
         name,
-        courseCode,
-        tags,
+        tag,
+        credits,
         year
     });
     newCourse.save().then((courseDoc) => {
@@ -144,11 +144,9 @@ app.post('/courses', (req, res) => {
 
 app.post('/course-listings', (req, res) => {
     let name = req.body.name;
-    let courseCode = req.body.courseCode;
 
     let newCourseListing = new CourseListing({
-        name,
-        courseCode
+        name
     });
     newCourseListing.save().then((courseListingDoc) => {
         res.send(courseListingDoc);

@@ -13,7 +13,7 @@ const CourseSchema = new mongoose.Schema({
         required: false
     },
     credits: {
-        type: Number,
+        type: [Number],
         required: true
     },
     year: {

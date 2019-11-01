@@ -11,14 +11,16 @@ import { NgForm } from '@angular/forms';
 })
 export class AddCourseComponent implements OnInit {
 
-
+  courseName: string;
   constructor(private courseService: CourseService, private router: Router) { }
-
   ngOnInit() {
+
+
   }
 
+  
   onChangeName(courseName: string) {
-    console.log(courseName);
+    this.courseName = courseName;
   }
 
 
@@ -26,18 +28,34 @@ export class AddCourseComponent implements OnInit {
 
 
   onClickSubmit(data: any) {
-    console.log(data);
+    let credits = this.handleCredits(data.creditengr, data.creditmth, data.creditsci, data.creditahs);
 
-    // let newCourse: Course = {
-    //   name: data.name,
-    //   tag: data.requirement,
-    //   credits: data.credits, 
-    //   year: data.year
-    // };
+    let newCourse: Course = {
+      name: this.courseName,
+      tag: data.requirement,
+      credits: credits, 
+      year: data.year
+    };
 
-    // this.courseService.addCourse(newCourse).subscribe(() => {
-    //   this.router.navigate(['/main-view']);
-    // });
+    this.courseService.addCourse(newCourse).subscribe(() => {
+      this.router.navigate(['/main-view']);
+    });
+  }
+
+
+  handleCredits(engr: string, mth: string, sci:string, ahs: string) {
+    let creditStrings = [engr, mth, sci, ahs];
+    var creditNumbers: number[] = [];
+
+    for (let item of creditStrings) {
+      if (!item) {
+        creditNumbers.push(0)
+      } else {
+        creditNumbers.push(parseInt(item))
+      }
+    }
+
+    return creditNumbers
   }
 
 }

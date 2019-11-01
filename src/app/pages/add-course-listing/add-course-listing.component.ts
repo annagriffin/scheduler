@@ -19,8 +19,7 @@ export class AddCourseListingComponent implements OnInit {
   onClickSubmit(data: any) {
 
     let newCourseListing: CourseListing = {
-      name: data.name,
-      courseCode: data.courseCode
+      name: data.name
     }
 
     this.courseService.addCourseListing(newCourseListing).subscribe(() => {
