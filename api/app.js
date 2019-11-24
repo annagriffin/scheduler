@@ -5,13 +5,14 @@ const bodyParser = require('body-parser');
 
 const { Course } = require('./db/models');
 const { CourseListing } = require('./db/models');
+const { Requirement } = require('./db/models');
 
 
 // middleware
 app.use(bodyParser.json());
 
 
-// CORS HEADER 
+// CORS HEADER
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
@@ -63,7 +64,7 @@ app.use(function(req, res, next) {
 // });
 // can add fucntion to get a specific task from a specific list
 // in video 3 in the last 5 minutes
-// would be used when wanting to get task document with the 
+// would be used when wanting to get task document with the
 // list id and the task id and the title
 
 
@@ -93,11 +94,25 @@ app.get('/courses', (req, res) => {
 
 });
 
+app.get('/courses/requirements', (req, res) => {
+    Course.find().then((courses) => {
+        var courseTags = [];
+        for (var c of courses) {
+            if (c['tag']) {
+                courseTags.push(c['tag']);
+            }
+        }
+        res.send(courseTags);
+    }).catch((e) => {
+        res.send(e);
+    });
+});
+
 
 app.get('/courses/:year', (req, res) => {
     Course.find({year: req.params.year}).then((list) => {
         res.send(list);
-    
+
     }).catch((e) => {
         res.send(e);
     });
@@ -111,6 +126,27 @@ app.get('/course-listings', (req, res) => {
         res.send(e);
     });
 
+});
+
+app.get('/requirements', (req, res) => {
+    Requirement.find().then((requirements) => {
+        res.send(requirements);
+    }).catch((e) => {
+        res.send(e);
+    });
+});
+
+
+app.post('/requirements', (req, res) => {
+    let name = req.body.name;
+    let status = req.body.status;
+    let newRequirement = new Requirement({
+        name,
+        status
+    });
+    newRequirement.save().then((requirementDoc) => {
+        res.send(requirementDoc);
+    });
 });
 
 

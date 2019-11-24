@@ -15,8 +15,8 @@ import { CourseService } from 'src/app/course.service';
 })
 export class MainViewComponent implements OnInit {
 
-  courses: any[];
-  listings: any[];
+  // courses: any[];
+  // listings: any[];
 
   constructor(private courseService: CourseService) { 
   }
@@ -31,13 +31,13 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.courseService.getCourses().subscribe((courses: any[]) => {
-      this.courses = courses;
-    });
+    // this.courseService.getCourses().subscribe((courses: any[]) => {
+    //   this.courses = courses;
+    // });
 
-    this.courseService.getCourseListings().subscribe((courseListing: any[]) => {
-      this.listings = courseListing;
-    });
+    // this.courseService.getCourseListings().subscribe((courseListing: any[]) => {
+    //   this.listings = courseListing;
+    // });
 
 
    

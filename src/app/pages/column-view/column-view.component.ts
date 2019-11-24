@@ -16,11 +16,10 @@ export class ColumnViewComponent implements OnInit {
 
   first: Course[];
 
-
   @Input()
   year: number;
 
-  constructor(private courseService: CourseService) { 
+  constructor(private courseService: CourseService) {
   }
 
   ngOnInit() {
@@ -28,7 +27,6 @@ export class ColumnViewComponent implements OnInit {
     this.courseService.getOneYear(this.year).subscribe((courses: Course[]) => {
       this.first = courses;
     });
-
   }
 
 
@@ -44,9 +42,9 @@ export class ColumnViewComponent implements OnInit {
       const l = index.length-1;
 
       this.courseService.updateYear(event.item.data['_id'], +index.charAt(l)+1).subscribe(() => {
-        
-      }); 
-      
+
+      });
+
     }
   }
 

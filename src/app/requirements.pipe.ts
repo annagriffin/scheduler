@@ -1,19 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
+
 @Pipe({
-  name: 'courses'
+  name: 'requirements'
 })
-export class CoursesPipe implements PipeTransform {
+export class RequirementsPipe implements PipeTransform {
 
   transform(value: any): any {
     let values = [];
     if (value) {
-      const courseList= Object.values(value);
-      for (let val in courseList) {
-        values.push(courseList[val]);
+      const requirementList = Object.values(value);
+      for (let val in requirementList) {
+        values.push(requirementList[val]);
       }
       return values;
     }
   }
+
 }
