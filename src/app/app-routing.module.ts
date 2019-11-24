@@ -10,7 +10,7 @@ import { CourseListingViewComponent } from './pages/course-listing-view/course-l
 
 const routes: Routes = [
   { path: 'main-view', component: MainViewComponent },
-  // { path: '', redirectTo: '/main-view', pathMatch: 'full' },
+  { path: '', redirectTo: '/main-view', pathMatch: 'full' },
   { path: 'add-course', component: AddCourseComponent},
   { path: 'add-course-listing', component: AddCourseListingComponent },
   { path: 'search', component: SearchComponent},
