@@ -17,14 +17,14 @@ export class RequirementsViewComponent implements OnInit {
   ngOnInit() {
     this.courseService.getRequirements().subscribe((requirements: Requirement[]) => {
       this.requirements = requirements;
-      console.log(this.requirements)
     });
 
   }
 
 
-  toggle(event: any) {
-    let checked = event.srcElement.checked;
+  toggle(val: any) {
+    val.status?'true':'false';
+
   }
 
 

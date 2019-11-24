@@ -44,7 +44,6 @@ export class ColumnViewComponent implements OnInit {
       this.courseService.updateYear(event.item.data['_id'], +index.charAt(l)+1).subscribe(() => {
 
       });
-
     }
   }
 
