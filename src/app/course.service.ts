@@ -43,8 +43,4 @@ export class CourseService {
     return this.webRequestService.post('course-listings', courseListing);
   }
 
-  getRequirements() {
-    return this.webRequestService.get('requirements');
-  }
-
 }

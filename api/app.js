@@ -25,61 +25,6 @@ app.use(function(req, res, next) {
     next();
   });
 
-// // GET /lists/
-// // get all lists
-// app.get('/lists', (req, res) => {
-//     // return array of all of the lists
-//     List.find().then((lists) => {
-//         res.send(lists);
-//     }).catch((e) => {
-//         res.send(e);
-//     });
-
-// });
-
-// // POST /lists
-// // create new list
-// app.post('/lists', (req, res) => {
-//     // create new list and return list back to user
-//     let title = req.body.title;
-//     let newList = new List({
-//         title
-//     });
-
-//     newList.save().then((listDoc) => {
-//         res.send(listDoc);
-//     });
-// });
-
-// // PATCH /lists/:id
-// // update list
-// app.patch('/lists/:id', (req, res) => {
-//     // update specified list with new values
-
-//     List.findOneAndUpdate({ _id: req.params.id}, {
-//         $set: req.body
-//     }).then(() => {
-//         res.sendStatus(200);
-//     });
-// });
-// can add fucntion to get a specific task from a specific list
-// in video 3 in the last 5 minutes
-// would be used when wanting to get task document with the
-// list id and the task id and the title
-
-
-// // DELETE /lists/:id
-// // delete list
-// app.delete('/lists/:id', (req, res) => {
-//     // delete specified list
-//     List.findOneAndRemove({
-//         _id: req.params.id
-//     }).then((removedListDoc) => {
-//         res.send(removedListDoc);
-//     });
-// });
-
-
 
 
 // GET /courses
@@ -146,6 +91,14 @@ app.post('/requirements', (req, res) => {
     });
     newRequirement.save().then((requirementDoc) => {
         res.send(requirementDoc);
+    });
+});
+
+app.patch('/requirements/:id', (req, res) => {
+    Requirement.findOneAndUpdate({ _id: req.params.id}, {
+        $set: req.body
+    }).then(() => {
+        res.send({'message': 'updated successfully'});
     });
 });
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from 'src/app/course.service';
+import { RequirementsService } from 'src/app/requirements.service';
 import { Requirement } from 'src/app/models/requirement.model';
 
 
@@ -11,11 +11,11 @@ import { Requirement } from 'src/app/models/requirement.model';
 export class RequirementsViewComponent implements OnInit {
 
   requirements: Requirement[];
-  constructor(private courseService: CourseService) { }
+  constructor(private requirementsService: RequirementsService) { }
 
 
   ngOnInit() {
-    this.courseService.getRequirements().subscribe((requirements: Requirement[]) => {
+    this.requirementsService.getRequirements().subscribe((requirements: Requirement[]) => {
       this.requirements = requirements;
     });
 
@@ -24,6 +24,8 @@ export class RequirementsViewComponent implements OnInit {
 
   toggle(val: any) {
     val.status?'true':'false';
+    this.requirementsService.updateRequirementStatus(val._id, val.status).subscribe(() => {
+    })
 
   }
 
