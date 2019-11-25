@@ -1,1 +1,28 @@
-<p>add-requirement works!</p>
+<div class="centered-content">
+    <div class="modal-box">
+        <h1 class="title">Add a New Course </h1>
+        <form #newcourse="ngForm" (ngSubmit)="onClickSubmit(newcourse.value)">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input has-background-light is-medium" name="name" type="text"
+                        placeholder="Enter Course Name" ngModel>
+                </div>
+            </div>
+
+
+            <div class="buttons is-right">
+                <button class="button is-medium" routerLink="/main-view">Cancel</button>
+
+                <button class="button is-primary has-text-white is-medium" type="submit">Create</button>
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+
+
+</div>

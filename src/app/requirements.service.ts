@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebRequestService } from './web-request.service';
+import { Requirement } from './models/requirement.model';
 
 
 @Injectable({
@@ -19,6 +20,10 @@ export class RequirementsService {
 
   deleteRequirement(requirementId: string) {
     return this.webRequestService.delete(`requirements/${requirementId}`);
+  }
+
+  addRequirement(requirement: Requirement) {
+    return this.webRequestService.post('requirements', requirement)
   }
 
 
