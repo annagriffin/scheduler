@@ -19,6 +19,7 @@ import { RequirementsViewComponent } from './pages/requirements-view/requirement
 import { CourseListingViewComponent } from './pages/course-listing-view/course-listing-view.component';
 import { RequirementsPipe } from './requirements.pipe';
 import { AddRequirementComponent } from './pages/add-requirement/add-requirement.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddRequirementComponent } from './pages/add-requirement/add-requirement
     RequirementsViewComponent,
     CourseListingViewComponent,
     RequirementsPipe,
-    AddRequirementComponent
+    AddRequirementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { AddCourseListingComponent } from './pages/add-course-listing/add-course
 import { SearchComponent } from './pages/search/search.component';
 import { CourseListingViewComponent } from './pages/course-listing-view/course-listing-view.component';
 import { AddRequirementComponent } from './pages/add-requirement/add-requirement.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'add-course-listing', component: AddCourseListingComponent },
   { path: 'search', component: SearchComponent},
   { path: 'course-listing-view', component: CourseListingViewComponent},
-  { path: 'add-requirement', component: AddRequirementComponent}
+  { path: 'add-requirement', component: AddRequirementComponent},
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

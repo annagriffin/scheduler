@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const { Course } = require('./db/models');
 const { CourseListing } = require('./db/models');
 const { Requirement } = require('./db/models');
+const { User } = require('./db/models');
 
 
 // middleware
@@ -177,6 +178,50 @@ app.delete('/course-listings/:id', (req, res) => {
         res.send(removedCourseListingDoc);
     });
 });
+
+// user routes
+
+app.post('/users', (req, res) => {
+    let body = req.body;
+    let newUser = new User(body);
+
+    newUser.save().then(() => {
+        return newUser.createSession();
+    }).then((refreshToken) => {
+        return newUser.generateAccessAuthToken().then((accessToken) => {
+            return { accessToken, refreshToken };
+        });
+    }).then((authTokens) => {
+        // send responses to the user
+        res
+            .header('x-refresh-token', authTokens.refreshToken)
+            .header('x-access-token', authTokens.accessToken)
+            .send(newUser);
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+})
+
+app.post('/users/login', (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+
+    User.findByCredentials(username, password).then((user) => {
+        return user.createSession().then((refreshToken) => {
+            // session created
+            return user.generateAccessAuthToken().then((accessToken) => {
+                return { accessToken, refreshToken }
+            });
+        }).then((authTokens) => {
+            res
+            .header('x-refresh-token', authTokens.refreshToken)
+            .header('x-access-token', authTokens.accessToken)
+            .send(user);
+        });
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+})
 
 
 
