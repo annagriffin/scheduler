@@ -17,5 +17,9 @@ export class RequirementsService {
     return this.webRequestService.patch(`requirements/${requirementId}`, { status });
   }
 
+  deleteRequirement(requirementId: string) {
+    return this.webRequestService.delete(`requirements/${requirementId}`);
+  }
+
 
 }

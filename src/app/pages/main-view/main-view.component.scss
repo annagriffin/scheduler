@@ -4,10 +4,43 @@
     height: 100%;
 }
 
-.app-name {
-    font-size: 28px;
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
+.content-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.icon-container {
+    position: absolute;
+    bottom:0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.icon {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.side-nav {
+    background:lightcyan;
+    min-width: 80px;
+    max-width: 80px;
+    position: relative;
+}
+
+.requirements-container {
+        display: flex;
+        flex-direction: column;
+
+        flex-grow: 1;
+        flex-basis: 0;
+        height: auto;
+
+        min-width: 300px;
+        max-width: 300px;
+        margin-top: 20px;
 }
 
 .board {
@@ -15,19 +48,8 @@
     flex-direction: column;
     flex-grow: 1;
 
-    min-width: 0;
-    min-height: 0;
-
-    .board-bar {
-        background: rgba(gray, 0.5);
-        padding: 8px 15px;
-
-        .board-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-        }
-    }
+    min-width: 1300px;
+    max-width: 1300px;
 
     .board-wrapper {
         display: flex;
@@ -43,11 +65,10 @@
             .board-column {
                 display: flex;
                 flex-direction: column;
-                
+
                 flex-grow: 1;
                 flex-basis: 0;
                 height: auto;
-                background: orange;
 
                 min-width: 300px;
                 max-width: 300px;

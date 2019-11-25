@@ -160,6 +160,15 @@ app.delete('/courses/:id', (req, res) => {
     });
 });
 
+app.delete('/requirements/:id', (req, res) => {
+    Requirement.findOneAndRemove({
+        _id: req.params.id
+    }).then((removedRequirementDoc) => {
+        res.send(removedRequirementDoc);
+    });
+});
+
+
 app.delete('/course-listings/:id', (req, res) => {
     // delete specified list
     CourseListing.findOneAndRemove({

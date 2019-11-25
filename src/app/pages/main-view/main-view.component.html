@@ -1,25 +1,34 @@
 <div class="root">
+    <div class="content-container">
+        <div class="side-nav">
+            <div class="icon-container">
 
-    <div class="board">
-
-        <div class="board-wrapper">
-            <div class="board-columns" cdkDropListGroup>
-                <div class="board-column" *ngFor="let column of board.columns; let i=index">
-                    <div class="column-title">
-                        {{ column.name }}
-                    </div>
-                    <app-column-view [year]="i+1"></app-column-view>
-                </div>
+                    <span class="icon has-tooltip-right" data-tooltip="Add Requirement" routerLink="/add-requirement">
+                        <i class="far fa-list-alt fa-2x"></i>
+                    </span>
+                    <span class="icon has-tooltip-right" data-tooltip="Add Course Listing" routerLink="/add-course-listing">
+                    <i class="far fa-file fa-2x"></i>
+                </span>
+                <span class="icon has-tooltip-right" data-tooltip="Add Course" routerLink="/add-course">
+                    <i class="fas fa-plus fa-2x"></i>
+                </span>
             </div>
         </div>
 
-
-
-
-    </div>
-
-    <div class="o">
-        <button class="button is-primary has-text-white" routerLink="/add-course">+ add course</button>
-        <button class="button is-primary has-text-white" routerLink="/add-course-listing">+ add course listing</button>
+        <div class="board">
+            <div class="board-wrapper">
+                <div class="board-columns" cdkDropListGroup>
+                    <div class="board-column" *ngFor="let column of board.columns; let i=index">
+                        <div class="column-title">
+                            {{ column.name }}
+                        </div>
+                        <app-column-view [year]="i+1"></app-column-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="requirements-container">
+            <app-requirements-view></app-requirements-view>
+        </div>
     </div>
 </div>

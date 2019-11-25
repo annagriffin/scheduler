@@ -25,8 +25,14 @@ export class RequirementsViewComponent implements OnInit {
   toggle(val: any) {
     val.status?'true':'false';
     this.requirementsService.updateRequirementStatus(val._id, val.status).subscribe(() => {
-    })
+    });
 
+  };
+
+  onDeleteRequirementClick(requirementId: string) {
+    this.requirementsService.deleteRequirement(requirementId).subscribe((requirement:any) => {
+      location.reload();
+    })
   }
 
 

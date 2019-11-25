@@ -1,11 +1,14 @@
 <div class="panel">
-    <p class="planel-heading">
+    <p class="panel-heading">
         Required Classes
     </p>
     <div class="requirement-listings" *ngFor="let requirement of requirements; let i=index">
     <label class="panel-block">
         <input type="checkbox" [(ngModel)]="requirement.status" name="requirement{{i}}" (change)="toggle(requirement)">
         {{ requirement.name }}
+        <div class="delete-btn">
+        <a (click)="onDeleteRequirementClick(requirement._id)" class="delete requirement"></a>
+    </div>
     </label>
 </div>
 </div>
