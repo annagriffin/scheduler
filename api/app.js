@@ -16,14 +16,15 @@ app.use(bodyParser.json());
 
 // CORS HEADER
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id");
 
     res.header(
         'Access-Control-Expose-Headers',
         'x-access-token, x-refresh-token'
     );
+
     next();
 });
 
@@ -101,7 +102,7 @@ app.get('/courses', authenticate, (req, res) => {
 
 // POST courses
 // add course
-app.post('/courses', (req, res) => {
+app.post('/courses', authenticate, (req, res) => {
     // create new list and return list back to user
     let name = req.body.name;
     let tag = req.body.tag;
@@ -111,7 +112,8 @@ app.post('/courses', (req, res) => {
         name,
         tag,
         credits,
-        year
+        year,
+        _userId: req.user_id
     });
     newCourse.save().then((courseDoc) => {
         res.send(courseDoc);
@@ -121,8 +123,8 @@ app.post('/courses', (req, res) => {
 
 // PATCH courses
 // update course
-app.patch('/courses/:id', (req, res) => {
-    Course.findOneAndUpdate({ _id: req.params.id }, {
+app.patch('/courses/:id', authenticate, (req, res) => {
+    Course.findOneAndUpdate({ _id: req.params.id, _userId: req.user_id }, {
         $set: req.body
     }).then(() => {
         res.send({ 'message': 'updated successfully' });
@@ -132,10 +134,11 @@ app.patch('/courses/:id', (req, res) => {
 
 // DELETE courses
 // remove course
-app.delete('/courses/:id', (req, res) => {
+app.delete('/courses/:id', authenticate, (req, res) => {
     // delete specified list
     Course.findOneAndRemove({
-        _id: req.params.id
+        _id: req.params.id,
+        _userId: req.user_id
     }).then((removedCourseDoc) => {
         res.send(removedCourseDoc);
     });
@@ -144,8 +147,11 @@ app.delete('/courses/:id', (req, res) => {
 
 // GET courses/:year
 // get courses from one year
-app.get('/courses/:year', (req, res) => {
-    Course.find({ year: req.params.year }).then((list) => {
+app.get('/courses/:year', authenticate, (req, res) => {
+    Course.find({
+        year: req.params.year,
+        _userId: req.user_id
+     }).then((list) => {
         res.send(list);
 
     }).catch((e) => {
@@ -173,7 +179,6 @@ app.get('/course-listings', (req, res) => {
 
 // GET course-listing/search/:query
 // get course listings that match search query
-
 app.get('/course-listings/search/:query', (req, res) => {
     CourseListing.find({ name: { $regex: '\\b' + req.params.query, $options: "i" } }).then((result) => {
         res.send(result);
@@ -205,23 +210,6 @@ app.delete('/course-listings/:id', (req, res) => {
         _id: req.params.id
     }).then((removedCourseListingDoc) => {
         res.send(removedCourseListingDoc);
-    });
-});
-
-
-
-
-app.get('/courses/requirements', (req, res) => {
-    Course.find().then((courses) => {
-        var courseTags = [];
-        for (var c of courses) {
-            if (c['tag']) {
-                courseTags.push(c['tag']);
-            }
-        }
-        res.send(courseTags);
-    }).catch((e) => {
-        res.send(e);
     });
 });
 
@@ -280,7 +268,6 @@ app.delete('/requirements/:id', (req, res) => {
 /**
  * User Routes
  */
-
 
 // POST users
 // add new user

@@ -8,7 +8,7 @@ import { MainViewComponent } from './pages/main-view/main-view.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoursesPipe } from './courses.pipe';
 import { ColumnViewComponent } from './pages/column-view/column-view.component';
 import { AddCourseComponent } from './pages/add-course/add-course.component';
@@ -20,6 +20,7 @@ import { CourseListingViewComponent } from './pages/course-listing-view/course-l
 import { RequirementsPipe } from './requirements.pipe';
 import { AddRequirementComponent } from './pages/add-requirement/add-requirement.component';
 import { LoginComponent } from './pages/login/login.component';
+import { WebRequestInterceptor } from './web-req.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,10 @@ import { LoginComponent } from './pages/login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SearchService],
+  providers: [
+    SearchService,
+    { provide: HTTP_INTERCEPTORS, useClass: WebRequestInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

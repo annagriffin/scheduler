@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, empty } from 'rxjs';
 import { AuthService } from './auth.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ export class WebRequestInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService) { }
 
+  refreshingAccessToken: boolean;
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // request
     request = this.addAuthHeader(request);
@@ -18,23 +20,49 @@ export class WebRequestInterceptor implements HttpInterceptor {
     // response
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+
+        if (error.status == 401 && !this.refreshingAccessToken) {
+          // unauthorized user
+          return this.refreshAccessToken()
+          .pipe(
+            switchMap(() => {
+              request = this.addAuthHeader(request);
+              return next.handle(request);
+            }),
+            catchError((err: any) => {
+              console.log(err);
+              this.authService.logout();
+              return empty();
+            })
+          )
+        }
         return throwError(error);
       })
     )
   }
 
+  refreshAccessToken() {
+    this.refreshingAccessToken = true;
+    return this.authService.getNewAccessToken().pipe(
+      tap(() =>  {
+        this.refreshingAccessToken = false;
+        console.log("Access Token Refreshed");
+      })
+    )
+  }
 
   addAuthHeader(request: HttpRequest<any>) {
-    // get access token and append it to the request header
+    // get the access token
     const token = this.authService.getAccessToken();
+
     if (token) {
+      // append the access token to the request header
       return request.clone({
         setHeaders: {
           'x-access-token': token
         }
       })
     }
-    return request
-
+    return request;
   }
 }
