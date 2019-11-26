@@ -1,6 +1,6 @@
 <div class="centered-content">
-    <div class="login">
-        <h1 class="title has-text-primary">Login</h1>
+    <div class="signup">
+        <h1 class="title has-text-primary">Sign Up</h1>
         <div class="field">
             <p class="control has-icons-left has-icons-right">
               <input #usernameInput class="input has-background-light" type="string" placeholder="Username">
@@ -19,12 +19,12 @@
           </div>
           <div class="field bottom-options">
             <p class="control">
-              <button class="button has-text-white is-success" (click)="onLoginButtonClicked(usernameInput.value, passwordInput.value)">
-                Login
+              <button class="button has-text-white is-success" (click)="onSignupButtonClicked(usernameInput.value, passwordInput.value)">
+                Sign Up
               </button>
             </p>
           </div>
           <br>
-          <p class="has-text-grey">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+          <p class="has-text-grey">Already have an account? <a routerLink="/login">Log in</a></p>
     </div>
 </div>

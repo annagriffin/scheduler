@@ -22,6 +22,16 @@ export class AuthService {
     )
   }
 
+  signup(username: string, password: string) {
+    return this.webService.signup(username, password).pipe(
+      shareReplay(),
+      tap((res: HttpResponse<any>) => {
+        // auth tokes in header of this response
+        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+      })
+    )
+  }
+
   logout() {
     this.removeSession();
     this.router.navigate(['/login']);

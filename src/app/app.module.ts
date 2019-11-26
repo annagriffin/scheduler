@@ -21,6 +21,7 @@ import { RequirementsPipe } from './requirements.pipe';
 import { AddRequirementComponent } from './pages/add-requirement/add-requirement.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WebRequestInterceptor } from './web-req.interceptor';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { WebRequestInterceptor } from './web-req.interceptor';
     CourseListingViewComponent,
     RequirementsPipe,
     AddRequirementComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
