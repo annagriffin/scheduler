@@ -3,7 +3,7 @@
         <h1 class="title has-text-primary">Login</h1>
         <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <input class="input has-background-light" type="string" placeholder="Username">
+              <input #usernameInput class="input has-background-light" type="string" placeholder="Username">
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -11,7 +11,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input has-background-light" type="password" placeholder="Password">
+              <input #passwordInput class="input has-background-light" type="password" placeholder="Password">
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -19,7 +19,7 @@
           </div>
           <div class="field is-pulled-right">
             <p class="control">
-              <button class="button has-text-white is-success">
+              <button class="button has-text-white is-success" (click)="onLoginButtonClicked(usernameInput.value, passwordInput.value)">
                 Login
               </button>
             </p>

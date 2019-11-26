@@ -1,4 +1,4 @@
- 
+
 const mongoose = require('mongoose');
 
 const CourseSchema = new mongoose.Schema({
@@ -20,6 +20,10 @@ const CourseSchema = new mongoose.Schema({
         type: Number,
         required: true,
         max: 4
+    },
+    _userId: {
+        type: mongoose.Types.ObjectId,
+        required: true
     }
 
 })

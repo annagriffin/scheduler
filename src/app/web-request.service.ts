@@ -24,8 +24,17 @@ export class WebRequestService {
   patch(uri: string, payload: Object) {
     return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
   }
-  
+
   delete(uri: string) {
     return this.http.delete(`${this.ROOT_URL}/${uri}`);
+  }
+
+  login(username: string, password: string) {
+    return this.http.post(`${this.ROOT_URL}/users/login`, {
+      username,
+      password
+    },{
+      observe: 'response'
+    });
   }
 }
