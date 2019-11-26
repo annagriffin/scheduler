@@ -27,6 +27,45 @@ app.use(function(req, res, next) {
   });
 
 
+  // verify refresh token
+let verifySession = (req, res, next) => {
+    let refreshToken = req.header('x-refresh-token');
+    let _id = req.header('_id');
+
+    User.findByIdAndToken(_id, refreshToken).then((user) => {
+        if (!user) {
+          return Promise.reject({
+              'error': 'User not found.'
+          });
+        }
+
+        // user was found
+        req.user_id = user._id;
+        req.userObject = user;
+        req.refreshToken = refreshToken;
+        let isSessionValid = false;
+
+        user.sessions.forEach((session) => {
+            if (session.token === refreshToken) {
+                // check if session has expired
+                if (User.hasRefreshTokenExpired(session.expiresAt) === false) {
+                  isSessionValid = true;
+                }
+            }
+        });
+
+        if (isSessionValid) {
+            next();
+        } else {
+            return Promise.reject({
+                'error': 'refresh token has expired or session has expired'
+            })
+        }
+    }).catch((e) => {
+        res.status(401).send(e);
+    });
+}
+
 
 // GET /courses
 // get all courses
@@ -214,15 +253,24 @@ app.post('/users/login', (req, res) => {
             });
         }).then((authTokens) => {
             res
-            .header('x-refresh-token', authTokens.refreshToken)
-            .header('x-access-token', authTokens.accessToken)
-            .send(user);
-        });
+                .header('x-refresh-token', authTokens.refreshToken)
+                .header('x-access-token', authTokens.accessToken)
+                .send(user);
+        })
     }).catch((e) => {
         res.status(400).send(e);
-    })
+    });
 })
 
+
+app.get('/users/me/access-token', verifySession, (req, res) => {
+    // user is authenticated and have id available and user object
+    req.userObject.generateAccessAuthToken().then((accessToken) => {
+        res.header('x-access-token', accessToken).send({ accessToken });
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+})
 
 
 app.listen(3000, () => {

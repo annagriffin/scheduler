@@ -61,7 +61,7 @@ UserSchema.methods.generateAccessAuthToken = function() {
 UserSchema.methods.generateRefreshAuthToken = function() {
     // generate random hex string
     return new Promise((resolve, reject) => {
-        crypto.randomBytes(64, (err,buf) => {
+        crypto.randomBytes(64, (err, buf) => {
             if (!err) {
                 let token = buf.toString('hex');
                 return resolve(token);
@@ -82,14 +82,11 @@ UserSchema.methods.createSession = function() {
     })
 }
 
- UserSchema.statics.getJWTSecret = () => {
-     return jwtSecret;
- }
-
 
 UserSchema.statics.findByIdAndToken = function(_id, token) {
     const User = this;
-    return User = findOne({
+
+    return User.findOne({
         _id,
         'sessions.token': token
     });
@@ -109,13 +106,12 @@ UserSchema.statics.findByCredentials = function(username, password) {
                 }
             })
         })
-
     })
 }
 
 
-UserSchema.static.hasRefreshTokenExpired = (expiresAt) => {
-    let secondsSinceEpoch = Data.now() / 1000;
+UserSchema.statics.hasRefreshTokenExpired = (expiresAt) => {
+    let secondsSinceEpoch = Date.now() / 1000;
     if (expiresAt > secondsSinceEpoch) {
         // hasn't expired
         return false;
