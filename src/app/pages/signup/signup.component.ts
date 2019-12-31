@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,15 +10,16 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  onSignupButtonClicked(username:  string, password: string) {
+  onSignupButtonClicked(username: string, password: string) {
     this.authService.signup(username, password).subscribe((res: HttpResponse<any>) => {
       console.log(res);
-    })
+      this.router.navigate(['/main-view']);
+    });
   }
 
 }

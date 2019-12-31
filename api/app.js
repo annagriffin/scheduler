@@ -317,6 +317,25 @@ app.post('/users/login', (req, res) => {
 })
 
 
+app.get('/users', (req, res) => {
+    User.find().then((users) => {
+        res.send(users);
+    }).catch((e) => {
+        res.send(e);
+    });
+});
+
+
+app.delete('/users/:id', (req, res) => {
+    // delete specified list
+    User.findOneAndRemove({
+        _id: req.params.id,
+    }).then((removedUserDoc) => {
+        res.send(removedUserDoc);
+    });
+});
+
+
 // GET users/me/access-token
 // get access-token
 app.get('/users/me/access-token', verifySession, (req, res) => {
