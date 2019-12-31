@@ -1,5 +1,5 @@
 <div class="search-container">
-  <input type="text" id="courseName" class="input has-background-light is-medium" [formControl]="queryField" placeholder="Search for artists..."
+  <input type="text" id="courseName" class="input has-background-light is-medium" [formControl]="queryField" placeholder="Search for course..."
     autofocus />
   <ul id="content" class="dropdown-content" *ngIf="results != null && results != 0" >
   <li class="search-item" *ngFor="let result of results">

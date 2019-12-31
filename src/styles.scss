@@ -3,5 +3,6 @@
 @import 'main-styles.scss';
 $card-content-padding: 0.8rem 1rem 0.8rem 1rem;
 $card-footer-padding: .25rem;
+$body-background-color: rgba(210, 246, 255, 0.575);
 @import '../node_modules/bulma/bulma.sass';
 @import '../node_modules/bulma-tooltip';

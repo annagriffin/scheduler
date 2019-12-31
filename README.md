@@ -1,27 +1,33 @@
 # Scheduler
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+Visual Course Planner for Olin College courses. This webapp is created with using the MEAN stack and bulma.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Pages
 
-## Code scaffolding
+### Login Page
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Login authentication using [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken). Users can signup with a username and password and use those credentials to log in to a personal account that stores the student's plan.
 
-## Build
+![login](img/login.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Main Board
 
-## Running unit tests
+The main view contains four columns into which course cards can be placed. The columns were created with Angular's drag and drop module to allow dynamic planning and flexibility. Cards can be moved between columns and their order can be rearranged.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![mainboard](img/mainboard.png)
 
-## Running end-to-end tests
+### Add Course
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The add course form consists of a title field, year, dropdown with requirement options, and credit distribution selection. The name field is implemented with a autosuggest feature that makes a request to the backend each time the text in the input field is changed and returns the course with matching characters.
+<div style="display:flex;">
+<img src='img/addcourse.png' style="margin: 10px;" alt="add course component" height="400">
+<img src='img/searchcomponent.png' style="margin: 10px;" alt="search component" height="400">
+</div>
 
-## Further help
+#### References
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- [Task App Example](https://www.youtube.com/channel/UCbwsS1m4Hib6R-9F1alus_A/videos?view=0&sort=dd&shelf_id=1)
+- [Search Component](https://medium.com/@nacimidjakirene/angular-search-autosuggest-with-observables-6f42987f80e6)
+- [drag and drop](https://material.angular.io/cdk/drag-drop/overview)
+- [Bulma](https://bulma.io/)
